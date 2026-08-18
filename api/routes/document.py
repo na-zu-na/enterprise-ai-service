@@ -6,22 +6,25 @@ from services.document_service import DocumentService
 
 router = APIRouter(
     prefix="/document",
-    tags=["document"]
+    tags=["document"],
 )
 
-document_service=DocumentService()
+document_service = DocumentService()
+
 
 @router.post(
-    "/post",
-    response_model=ApiResponse[DocumentParseResponse]
+    "/parse",
+    response_model=ApiResponse[list[DocumentParseResponse]],
 )
-def parse_document(request:DocumentParseRequest):
-    parsed=document_service.parse_document(request)
-    document=DocumentParseResponse(
-        document_id=parsed.document_id,
-        title=parsed.title,
-        status="SUCCESS",
-        section_count=len(parsed.sections),
-        char_count=len(parsed.content)
+def parse_document(
+    request: DocumentParseRequest,
+) -> ApiResponse[list[DocumentParseResponse]]:
+    chunks = document_service.parse_document(request)
+    response_chunks = [
+        DocumentParseResponse.model_validate(chunk)
+        for chunk in chunks
+    ]
+
+    return ApiResponse[list[DocumentParseResponse]].success(
+        response_chunks
     )
-    return ApiResponse.success(document)

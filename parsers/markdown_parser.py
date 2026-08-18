@@ -124,5 +124,5 @@ class MarkdownParser(BaseDocumentParser):
             if context.name:
                 return context.name
 
-            return Path(context.original_name).stem
+        return Path(context.original_name).stem
 

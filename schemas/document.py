@@ -1,7 +1,14 @@
-from pydantic import BaseModel, Field
+from typing import Any
+
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class DocumentParseRequest(BaseModel):
+
+    model_config = ConfigDict(
+        validate_by_alias=True,
+        validate_by_name=True,
+    )
 
     document_id: int = Field(alias="documentId")
 
@@ -29,29 +36,28 @@ class DocumentParseRequest(BaseModel):
 
     version: int = 1
 
-    model_config = {
-        "populate_by_name": True
-    }
-
-
 class DocumentParseResponse(BaseModel):
+
+    model_config = ConfigDict(
+        from_attributes=True,
+        validate_by_alias=True,
+        validate_by_name=True,
+    )
 
     document_id: int = Field(
         alias="documentId"
     )
 
-    status: str
-
-    title: str | None = None
-
+    knowledge_base_id: int = Field(
+        alias="knowledgeBaseId"
+    )
+    chunk_index: int = Field(
+        alias="chunkIndex"
+    )
+    content: str
     char_count: int = Field(
+        default=0,
         alias="charCount"
     )
 
-    section_count: int = Field(
-        alias="sectionCount"
-    )
-
-    model_config = {
-        "populate_by_name": True
-    }
+    metadata: dict[str, Any] = Field(default_factory=dict)
