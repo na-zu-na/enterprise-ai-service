@@ -8,6 +8,7 @@ class DocumentChunk:
     knowledge_base_id: int
     chunk_index: int
     content: str
-    char_count:int=0
+    embedding:list[float] | None=None
 
+    char_count:int=0
     metadata:dict[str,Any]=field(default_factory=dict)

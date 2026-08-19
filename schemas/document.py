@@ -60,4 +60,5 @@ class DocumentParseResponse(BaseModel):
         alias="charCount"
     )
 
+    embedding: list[float]
     metadata: dict[str, Any] = Field(default_factory=dict)

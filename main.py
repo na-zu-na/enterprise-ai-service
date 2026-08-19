@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from api.exception_handlers import document_parse_exception_handler
 from api.routes.document import router as document_router
 from parsers.exceptions import DocumentParseException
+from api.routes.embedding import router as embedding_documents_router
 
 app = FastAPI(
     title="Enterprise Agent AI Service",
@@ -15,3 +16,4 @@ app.add_exception_handler(
     document_parse_exception_handler,
 )
 app.include_router(document_router,tags=["document"])
+app.include_router(embedding_documents_router,tags=["embedding"])
