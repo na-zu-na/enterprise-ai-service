@@ -29,7 +29,11 @@ class EmbeddingService:
 
         return result
 
-    def retrieve(self,request:VectorRetrievalRequest,db:Session)->list[VectorRetrievalResponse]:
+    def retrieve_dense(
+            self,
+            request: VectorRetrievalRequest,
+            db: Session,
+    ) -> list[VectorRetrievalResponse]:
         query_embedding=self.embedding_model.embed_query(request.query)
 
         if not request.knowledge_base_ids:
@@ -66,7 +70,7 @@ class EmbeddingService:
                 DocumentChunkEntity.knowledge_base_id.in_(request.knowledge_base_ids)
             )
             .order_by(distance)
-            .limit(request.top_k)
+            .limit(request.candidate_k)
         )
 
         rows=db.execute(statement).mappings().all()

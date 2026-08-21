@@ -3,16 +3,20 @@ from sqlalchemy.orm import Session
 
 from llm.OpenAILLM import OpenAILLM
 from schemas.embedding import VectorRetrievalRequest, RagResponse
-from services.embedding_service import EmbeddingService
+from services.retrieval_pipeline_service import (
+    RetrievalPipelineService,
+)
 
 
 class RagService:
     def __init__(self):
-        self.embedding_service=EmbeddingService()
-        self.llm=OpenAILLM()
+        self.retrieval_pipeline = (
+            RetrievalPipelineService()
+        )
+        self.llm = OpenAILLM()
 
     def answer(self,request: VectorRetrievalRequest,db: Session)->RagResponse:
-        chunks=self.embedding_service.retrieve(request,db)
+        chunks = self.retrieval_pipeline.retrieve(request,db)
 
         if not chunks:
             return RagResponse(answer='没有检索到内容',citations=[])

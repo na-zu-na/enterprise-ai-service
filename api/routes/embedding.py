@@ -24,9 +24,9 @@ def embedding_documents(
     "/retrieval",
     response_model=ApiResponse[list[VectorRetrievalResponse]],
 )
-def vector_retrieval(
+def dense_retrieval(
         request:VectorRetrievalRequest,
         db: Session = Depends(get_db)
 )->ApiResponse[list[VectorRetrievalResponse]]:
-    result=embedding_service.retrieve(request,db)
+    result=embedding_service.retrieve_dense(request,db)
     return ApiResponse.success(result)
