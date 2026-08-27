@@ -1,0 +1,198 @@
+[
+  {
+    "id": "keyword-001",
+    "category": "keyword",
+    "query": "年假需要提前几天申请？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [14],
+    "notes": "明确时间关键词"
+  },
+  {
+    "id": "keyword-002",
+    "category": "keyword",
+    "query": "连续休假超过3天要提前多久？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [14]
+  },
+  {
+    "id": "keyword-003",
+    "category": "keyword",
+    "query": "年假由谁审批？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [15]
+  },
+  {
+    "id": "keyword-004",
+    "category": "keyword",
+    "query": "未经审批擅自休假怎么处理？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [16]
+  },
+  {
+    "id": "keyword-005",
+    "category": "keyword",
+    "query": "年假制度适用于哪些员工？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [13]
+  },
+  {
+    "id": "semantic-001",
+    "category": "semantic_rewrite",
+    "query": "我想下周休假，什么时候提交比较合适？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [14]
+  },
+  {
+    "id": "semantic-002",
+    "category": "semantic_rewrite",
+    "query": "准备一次休四天，现在该什么时候走申请？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [14]
+  },
+  {
+    "id": "semantic-003",
+    "category": "semantic_rewrite",
+    "query": "请假单交上去以后谁来决定是否通过？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [15]
+  },
+  {
+    "id": "semantic-004",
+    "category": "semantic_rewrite",
+    "query": "项目正忙的时候，我已经计划的休息日期会不会调整？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [15]
+  },
+  {
+    "id": "semantic-005",
+    "category": "semantic_rewrite",
+    "query": "没等领导同意就直接不上班会有什么后果？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [16]
+  },
+  {
+    "id": "semantic-006",
+    "category": "semantic_rewrite",
+    "query": "今年没休完的假以后还能不能用？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [16]
+  },
+  {
+    "id": "semantic-007",
+    "category": "semantic_rewrite",
+    "query": "实习生能按这份规定申请年假吗？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [13]
+  },
+  {
+    "id": "exact-001",
+    "category": "exact_reference",
+    "query": "年假制度第1节适用范围讲了什么？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [13]
+  },
+  {
+    "id": "exact-002",
+    "category": "exact_reference",
+    "query": "第2节年假申请的要求是什么？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [14]
+  },
+  {
+    "id": "exact-003",
+    "category": "exact_reference",
+    "query": "第3节审批流程如何规定？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [15]
+  },
+  {
+    "id": "exact-004",
+    "category": "exact_reference",
+    "query": "第4节注意事项有哪些？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [16]
+  },
+  {
+    "id": "cross-001",
+    "category": "cross_chunk",
+    "query": "哪些人适用这份年假制度，他们申请时要提前多久？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [13, 14]
+  },
+  {
+    "id": "cross-002",
+    "category": "cross_chunk",
+    "query": "连续休四天应该何时申请，提交后由谁审批？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [14, 15]
+  },
+  {
+    "id": "cross-003",
+    "category": "cross_chunk",
+    "query": "从提交年假申请到审批的完整流程是什么？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [14, 15]
+  },
+  {
+    "id": "cross-004",
+    "category": "cross_chunk",
+    "query": "年假审批人能否调整时间，没批准就休假又会怎样？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": 1,
+    "expected_chunk_ids": [15, 16]
+  },
+  {
+    "id": "no-answer-001",
+    "category": "no_answer",
+    "query": "公司的病假一年有多少天？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": null,
+    "expected_chunk_ids": [],
+    "notes": "当前知识库没有病假额度"
+  },
+  {
+    "id": "no-answer-002",
+    "category": "no_answer",
+    "query": "婚假需要提供哪些证明材料？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": null,
+    "expected_chunk_ids": []
+  },
+  {
+    "id": "no-answer-003",
+    "category": "no_answer",
+    "query": "加班可以兑换几天调休？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": null,
+    "expected_chunk_ids": []
+  },
+  {
+    "id": "no-answer-004",
+    "category": "no_answer",
+    "query": "HR-2026-001是什么？",
+    "knowledge_base_ids": [1],
+    "expected_document_id": null,
+    "expected_chunk_ids": [],
+    "notes": "该编号当前不存在，避免把示例编号误标为真实答案"
+  }
+]
+

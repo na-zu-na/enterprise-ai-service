@@ -1,6 +1,8 @@
 from sqlalchemy.orm import Session
 
+from core.config import Settings
 from schemas.embedding import VectorRetrievalRequest, HybridRetrievalResponse
+from services.citation_policy import filter_relevant_candidates
 from services.hybrid_retrieval_service import HybridRetrievalService
 from services.reranking_service import RerankingService
 
@@ -27,8 +29,13 @@ class RetrievalPipelineService:
             return []
 
         # RRF Top 20 → Reranker → Final Top 5
-        return self.reranking_service.rerank(
+        reranked_candidates = self.reranking_service.rerank(
             query=request.query,
             candidates=rrf_candidates,
             top_k=request.top_k,
+        )
+
+        return filter_relevant_candidates(
+            reranked_candidates,
+            min_score=Settings.RERANKER_MIN_SCORE,
         )

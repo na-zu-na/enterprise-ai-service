@@ -1,0 +1,1514 @@
+{
+  "dataset_path": "C:\\Users\\25537\\桌面\\实用工具\\Project\\code\\enterprise-ai-service\\evals\\datasets\\retrieval_eval.json",
+  "candidate_k": 30,
+  "rrf_top_k": 20,
+  "top_k": 5,
+  "strategies": [
+    {
+      "strategy": "Vector Only",
+      "top_k": 5,
+      "metrics": {
+        "evaluated_queries": 20,
+        "skipped_no_answer_queries": 4,
+        "hit_at_k": 1.0,
+        "recall_at_k": 1.0,
+        "mrr": 0.8666666666666668
+      },
+      "metrics_by_category": {
+        "cross_chunk": {
+          "evaluated_queries": 4,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.875
+        },
+        "exact_reference": {
+          "evaluated_queries": 4,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.625
+        },
+        "keyword": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.8666666666666668
+        },
+        "no_answer": {
+          "evaluated_queries": 0,
+          "skipped_no_answer_queries": 4,
+          "hit_at_k": 0.0,
+          "recall_at_k": 0.0,
+          "mrr": 0.0
+        },
+        "semantic_rewrite": {
+          "evaluated_queries": 7,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "queries": [
+        {
+          "case_id": "keyword-001",
+          "category": "keyword",
+          "query": "年假需要提前几天申请？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            13,
+            16,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-002",
+          "category": "keyword",
+          "query": "连续休假超过3天要提前多久？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            15,
+            16,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-003",
+          "category": "keyword",
+          "query": "年假由谁审批？",
+          "expected_chunk_ids": [
+            15
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            16,
+            15,
+            14
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333
+          }
+        },
+        {
+          "case_id": "keyword-004",
+          "category": "keyword",
+          "query": "未经审批擅自休假怎么处理？",
+          "expected_chunk_ids": [
+            16
+          ],
+          "retrieved_chunk_ids": [
+            16,
+            15,
+            13,
+            14
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-005",
+          "category": "keyword",
+          "query": "年假制度适用于哪些员工？",
+          "expected_chunk_ids": [
+            13
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            14,
+            16,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-001",
+          "category": "semantic_rewrite",
+          "query": "我想下周休假，什么时候提交比较合适？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            15,
+            16,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-002",
+          "category": "semantic_rewrite",
+          "query": "准备一次休四天，现在该什么时候走申请？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            15,
+            16,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-003",
+          "category": "semantic_rewrite",
+          "query": "请假单交上去以后谁来决定是否通过？",
+          "expected_chunk_ids": [
+            15
+          ],
+          "retrieved_chunk_ids": [
+            15,
+            16,
+            13,
+            14
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-004",
+          "category": "semantic_rewrite",
+          "query": "项目正忙的时候，我已经计划的休息日期会不会调整？",
+          "expected_chunk_ids": [
+            15
+          ],
+          "retrieved_chunk_ids": [
+            15,
+            16,
+            14,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-005",
+          "category": "semantic_rewrite",
+          "query": "没等领导同意就直接不上班会有什么后果？",
+          "expected_chunk_ids": [
+            16
+          ],
+          "retrieved_chunk_ids": [
+            16,
+            15,
+            14,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-006",
+          "category": "semantic_rewrite",
+          "query": "今年没休完的假以后还能不能用？",
+          "expected_chunk_ids": [
+            16
+          ],
+          "retrieved_chunk_ids": [
+            16,
+            13,
+            14,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-007",
+          "category": "semantic_rewrite",
+          "query": "实习生能按这份规定申请年假吗？",
+          "expected_chunk_ids": [
+            13
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            14,
+            16,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-001",
+          "category": "exact_reference",
+          "query": "年假制度第1节适用范围讲了什么？",
+          "expected_chunk_ids": [
+            13
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            16,
+            14,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-002",
+          "category": "exact_reference",
+          "query": "第2节年假申请的要求是什么？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            14,
+            16,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "exact-003",
+          "category": "exact_reference",
+          "query": "第3节审批流程如何规定？",
+          "expected_chunk_ids": [
+            15
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            15,
+            16,
+            14
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "exact-004",
+          "category": "exact_reference",
+          "query": "第4节注意事项有哪些？",
+          "expected_chunk_ids": [
+            16
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            16,
+            15,
+            14
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "cross-001",
+          "category": "cross_chunk",
+          "query": "哪些人适用这份年假制度，他们申请时要提前多久？",
+          "expected_chunk_ids": [
+            13,
+            14
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            14,
+            16,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-002",
+          "category": "cross_chunk",
+          "query": "连续休四天应该何时申请，提交后由谁审批？",
+          "expected_chunk_ids": [
+            14,
+            15
+          ],
+          "retrieved_chunk_ids": [
+            15,
+            14,
+            16,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-003",
+          "category": "cross_chunk",
+          "query": "从提交年假申请到审批的完整流程是什么？",
+          "expected_chunk_ids": [
+            14,
+            15
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "cross-004",
+          "category": "cross_chunk",
+          "query": "年假审批人能否调整时间，没批准就休假又会怎样？",
+          "expected_chunk_ids": [
+            15,
+            16
+          ],
+          "retrieved_chunk_ids": [
+            16,
+            15,
+            13,
+            14
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "no-answer-001",
+          "category": "no_answer",
+          "query": "公司的病假一年有多少天？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            14,
+            13,
+            16,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-002",
+          "category": "no_answer",
+          "query": "婚假需要提供哪些证明材料？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            13,
+            14,
+            16,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-003",
+          "category": "no_answer",
+          "query": "加班可以兑换几天调休？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            15,
+            16,
+            14,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-004",
+          "category": "no_answer",
+          "query": "HR-2026-001是什么？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            13,
+            15,
+            14,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        }
+      ]
+    },
+    {
+      "strategy": "Hybrid + RRF",
+      "top_k": 5,
+      "metrics": {
+        "evaluated_queries": 20,
+        "skipped_no_answer_queries": 4,
+        "hit_at_k": 1.0,
+        "recall_at_k": 1.0,
+        "mrr": 0.8916666666666668
+      },
+      "metrics_by_category": {
+        "cross_chunk": {
+          "evaluated_queries": 4,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.875
+        },
+        "exact_reference": {
+          "evaluated_queries": 4,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.875
+        },
+        "keyword": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.8666666666666668
+        },
+        "no_answer": {
+          "evaluated_queries": 0,
+          "skipped_no_answer_queries": 4,
+          "hit_at_k": 0.0,
+          "recall_at_k": 0.0,
+          "mrr": 0.0
+        },
+        "semantic_rewrite": {
+          "evaluated_queries": 7,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.9285714285714286
+        }
+      },
+      "queries": [
+        {
+          "case_id": "keyword-001",
+          "category": "keyword",
+          "query": "年假需要提前几天申请？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            13,
+            16,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-002",
+          "category": "keyword",
+          "query": "连续休假超过3天要提前多久？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            15,
+            16,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-003",
+          "category": "keyword",
+          "query": "年假由谁审批？",
+          "expected_chunk_ids": [
+            15
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333
+          }
+        },
+        {
+          "case_id": "keyword-004",
+          "category": "keyword",
+          "query": "未经审批擅自休假怎么处理？",
+          "expected_chunk_ids": [
+            16
+          ],
+          "retrieved_chunk_ids": [
+            16,
+            15,
+            13,
+            14
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-005",
+          "category": "keyword",
+          "query": "年假制度适用于哪些员工？",
+          "expected_chunk_ids": [
+            13
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            14,
+            16,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-001",
+          "category": "semantic_rewrite",
+          "query": "我想下周休假，什么时候提交比较合适？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            15,
+            16,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-002",
+          "category": "semantic_rewrite",
+          "query": "准备一次休四天，现在该什么时候走申请？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            15,
+            13,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-003",
+          "category": "semantic_rewrite",
+          "query": "请假单交上去以后谁来决定是否通过？",
+          "expected_chunk_ids": [
+            15
+          ],
+          "retrieved_chunk_ids": [
+            15,
+            16,
+            13,
+            14
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-004",
+          "category": "semantic_rewrite",
+          "query": "项目正忙的时候，我已经计划的休息日期会不会调整？",
+          "expected_chunk_ids": [
+            15
+          ],
+          "retrieved_chunk_ids": [
+            15,
+            16,
+            14,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-005",
+          "category": "semantic_rewrite",
+          "query": "没等领导同意就直接不上班会有什么后果？",
+          "expected_chunk_ids": [
+            16
+          ],
+          "retrieved_chunk_ids": [
+            16,
+            15,
+            14,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-006",
+          "category": "semantic_rewrite",
+          "query": "今年没休完的假以后还能不能用？",
+          "expected_chunk_ids": [
+            16
+          ],
+          "retrieved_chunk_ids": [
+            16,
+            13,
+            14,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-007",
+          "category": "semantic_rewrite",
+          "query": "实习生能按这份规定申请年假吗？",
+          "expected_chunk_ids": [
+            13
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            13,
+            16,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "exact-001",
+          "category": "exact_reference",
+          "query": "年假制度第1节适用范围讲了什么？",
+          "expected_chunk_ids": [
+            13
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            14,
+            16,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-002",
+          "category": "exact_reference",
+          "query": "第2节年假申请的要求是什么？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            13,
+            16,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-003",
+          "category": "exact_reference",
+          "query": "第3节审批流程如何规定？",
+          "expected_chunk_ids": [
+            15
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            15,
+            16,
+            14
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "exact-004",
+          "category": "exact_reference",
+          "query": "第4节注意事项有哪些？",
+          "expected_chunk_ids": [
+            16
+          ],
+          "retrieved_chunk_ids": [
+            16,
+            13,
+            15,
+            14
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-001",
+          "category": "cross_chunk",
+          "query": "哪些人适用这份年假制度，他们申请时要提前多久？",
+          "expected_chunk_ids": [
+            13,
+            14
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-002",
+          "category": "cross_chunk",
+          "query": "连续休四天应该何时申请，提交后由谁审批？",
+          "expected_chunk_ids": [
+            14,
+            15
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            15,
+            13,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-003",
+          "category": "cross_chunk",
+          "query": "从提交年假申请到审批的完整流程是什么？",
+          "expected_chunk_ids": [
+            14,
+            15
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            15,
+            14,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "cross-004",
+          "category": "cross_chunk",
+          "query": "年假审批人能否调整时间，没批准就休假又会怎样？",
+          "expected_chunk_ids": [
+            15,
+            16
+          ],
+          "retrieved_chunk_ids": [
+            16,
+            15,
+            14,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "no-answer-001",
+          "category": "no_answer",
+          "query": "公司的病假一年有多少天？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            14,
+            16,
+            13,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-002",
+          "category": "no_answer",
+          "query": "婚假需要提供哪些证明材料？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            13,
+            14,
+            16,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-003",
+          "category": "no_answer",
+          "query": "加班可以兑换几天调休？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            15,
+            16,
+            14,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-004",
+          "category": "no_answer",
+          "query": "HR-2026-001是什么？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            13,
+            15,
+            14,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        }
+      ]
+    },
+    {
+      "strategy": "Hybrid + RRF + Reranker",
+      "top_k": 5,
+      "metrics": {
+        "evaluated_queries": 20,
+        "skipped_no_answer_queries": 4,
+        "hit_at_k": 1.0,
+        "recall_at_k": 1.0,
+        "mrr": 0.975
+      },
+      "metrics_by_category": {
+        "cross_chunk": {
+          "evaluated_queries": 4,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 1.0
+        },
+        "exact_reference": {
+          "evaluated_queries": 4,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 1.0
+        },
+        "keyword": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 1.0
+        },
+        "no_answer": {
+          "evaluated_queries": 0,
+          "skipped_no_answer_queries": 4,
+          "hit_at_k": 0.0,
+          "recall_at_k": 0.0,
+          "mrr": 0.0
+        },
+        "semantic_rewrite": {
+          "evaluated_queries": 7,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.9285714285714286
+        }
+      },
+      "queries": [
+        {
+          "case_id": "keyword-001",
+          "category": "keyword",
+          "query": "年假需要提前几天申请？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            15,
+            13,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-002",
+          "category": "keyword",
+          "query": "连续休假超过3天要提前多久？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            16,
+            15,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-003",
+          "category": "keyword",
+          "query": "年假由谁审批？",
+          "expected_chunk_ids": [
+            15
+          ],
+          "retrieved_chunk_ids": [
+            15,
+            16,
+            13,
+            14
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-004",
+          "category": "keyword",
+          "query": "未经审批擅自休假怎么处理？",
+          "expected_chunk_ids": [
+            16
+          ],
+          "retrieved_chunk_ids": [
+            16,
+            15,
+            13,
+            14
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-005",
+          "category": "keyword",
+          "query": "年假制度适用于哪些员工？",
+          "expected_chunk_ids": [
+            13
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-001",
+          "category": "semantic_rewrite",
+          "query": "我想下周休假，什么时候提交比较合适？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            15,
+            16,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-002",
+          "category": "semantic_rewrite",
+          "query": "准备一次休四天，现在该什么时候走申请？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            15,
+            16,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-003",
+          "category": "semantic_rewrite",
+          "query": "请假单交上去以后谁来决定是否通过？",
+          "expected_chunk_ids": [
+            15
+          ],
+          "retrieved_chunk_ids": [
+            15,
+            16,
+            13,
+            14
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-004",
+          "category": "semantic_rewrite",
+          "query": "项目正忙的时候，我已经计划的休息日期会不会调整？",
+          "expected_chunk_ids": [
+            15
+          ],
+          "retrieved_chunk_ids": [
+            15,
+            16,
+            14,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-005",
+          "category": "semantic_rewrite",
+          "query": "没等领导同意就直接不上班会有什么后果？",
+          "expected_chunk_ids": [
+            16
+          ],
+          "retrieved_chunk_ids": [
+            16,
+            15,
+            14,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-006",
+          "category": "semantic_rewrite",
+          "query": "今年没休完的假以后还能不能用？",
+          "expected_chunk_ids": [
+            16
+          ],
+          "retrieved_chunk_ids": [
+            16,
+            15,
+            14,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-007",
+          "category": "semantic_rewrite",
+          "query": "实习生能按这份规定申请年假吗？",
+          "expected_chunk_ids": [
+            13
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            13,
+            15,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "exact-001",
+          "category": "exact_reference",
+          "query": "年假制度第1节适用范围讲了什么？",
+          "expected_chunk_ids": [
+            13
+          ],
+          "retrieved_chunk_ids": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-002",
+          "category": "exact_reference",
+          "query": "第2节年假申请的要求是什么？",
+          "expected_chunk_ids": [
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            15,
+            13,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-003",
+          "category": "exact_reference",
+          "query": "第3节审批流程如何规定？",
+          "expected_chunk_ids": [
+            15
+          ],
+          "retrieved_chunk_ids": [
+            15,
+            16,
+            13,
+            14
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-004",
+          "category": "exact_reference",
+          "query": "第4节注意事项有哪些？",
+          "expected_chunk_ids": [
+            16
+          ],
+          "retrieved_chunk_ids": [
+            16,
+            14,
+            15,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-001",
+          "category": "cross_chunk",
+          "query": "哪些人适用这份年假制度，他们申请时要提前多久？",
+          "expected_chunk_ids": [
+            13,
+            14
+          ],
+          "retrieved_chunk_ids": [
+            14,
+            13,
+            15,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-002",
+          "category": "cross_chunk",
+          "query": "连续休四天应该何时申请，提交后由谁审批？",
+          "expected_chunk_ids": [
+            14,
+            15
+          ],
+          "retrieved_chunk_ids": [
+            15,
+            14,
+            16,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-003",
+          "category": "cross_chunk",
+          "query": "从提交年假申请到审批的完整流程是什么？",
+          "expected_chunk_ids": [
+            14,
+            15
+          ],
+          "retrieved_chunk_ids": [
+            15,
+            13,
+            14,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-004",
+          "category": "cross_chunk",
+          "query": "年假审批人能否调整时间，没批准就休假又会怎样？",
+          "expected_chunk_ids": [
+            15,
+            16
+          ],
+          "retrieved_chunk_ids": [
+            15,
+            16,
+            14,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "no-answer-001",
+          "category": "no_answer",
+          "query": "公司的病假一年有多少天？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            14,
+            16,
+            13,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-002",
+          "category": "no_answer",
+          "query": "婚假需要提供哪些证明材料？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            14,
+            13,
+            15,
+            16
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-003",
+          "category": "no_answer",
+          "query": "加班可以兑换几天调休？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            15,
+            14,
+            16,
+            13
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-004",
+          "category": "no_answer",
+          "query": "HR-2026-001是什么？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            13,
+            16,
+            14,
+            15
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        }
+      ]
+    }
+  ]
+}

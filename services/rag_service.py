@@ -2,7 +2,8 @@
 from sqlalchemy.orm import Session
 
 from llm.OpenAILLM import OpenAILLM
-from schemas.embedding import VectorRetrievalRequest, RagResponse
+from schemas.embedding import VectorRetrievalRequest, RagResponse, HybridRetrievalResponse
+from services.citation_policy import select_answer_citations
 from services.retrieval_pipeline_service import (
     RetrievalPipelineService,
 )
@@ -15,8 +16,16 @@ class RagService:
         )
         self.llm = OpenAILLM()
 
+    def retrieve(
+            self,
+            request: VectorRetrievalRequest,
+            db: Session,
+    ) -> list[HybridRetrievalResponse]:
+        return self.retrieval_pipeline.retrieve(request, db)
+
+
     def answer(self,request: VectorRetrievalRequest,db: Session)->RagResponse:
-        chunks = self.retrieval_pipeline.retrieve(request,db)
+        chunks = self.retrieve(request,db)
 
         if not chunks:
             return RagResponse(answer='没有检索到内容',citations=[])
@@ -33,10 +42,11 @@ class RagService:
         
         要求：
         1. 只能根据参考资料回答。
-        2. 资料不足时，明确回答“根据现有资料无法确定”。
+        2. 资料不足时，只回答“根据现有资料无法确定”，不要输出其他内容或引用。
         3. 不要编造资料中不存在的信息。
         4. 引用资料时，必须使用资料中的实际文档名称，格式为“【文档名称】”。
         5. 不得使用“资料1”、“资料2”等编号代替文档名称。
+        6. 能够回答时，每个事实结论都必须至少有一个对应的文档引用。
         """
 
         answer = self.llm.generate(
@@ -48,7 +58,10 @@ class RagService:
             ),
         )
 
-        return RagResponse(answer=answer,citations=chunks)
+        return RagResponse(
+            answer=answer,
+            citations=select_answer_citations(answer, chunks),
+        )
 
     @staticmethod
     def build_context(chunks) -> str:

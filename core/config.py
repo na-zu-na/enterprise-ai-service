@@ -37,3 +37,20 @@ class Settings:
     RERANKER_PASSAGE_MAX_LENGTH: int = int(
         os.getenv("RERANKER_PASSAGE_MAX_LENGTH", "512")
     )
+    RERANKER_MIN_SCORE: float = float(
+        os.getenv("RERANKER_MIN_SCORE", "0.5")
+    )
+
+    SPRING_REQUEST_URL: str = os.getenv(
+        "SPRING_REQUEST_URL","http://localhost:8080"
+    )
+
+    SPRING_USER_NAME: str = os.getenv(
+        "SPRING_USER_NAME","agent_user"
+    )
+
+    SPRING_USER_PASSWORD: str = os.getenv(
+        "SPRING_USER_PASSWORD","12345"
+    )
+
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "postgresql://postgres:199550@localhost:5432/enterprise_agent")

@@ -1,7 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-DATABASE_URI = 'postgresql://ai_service:199550@localhost:5432/enterprise_agent'
+from core.config import Settings
+
+DATABASE_URI = Settings.DATABASE_URL
 
 engine=create_engine(DATABASE_URI,pool_pre_ping=True)
 

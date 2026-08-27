@@ -1,14 +1,31 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 
-from api.exception_handlers import document_parse_exception_handler
+from agents.graph import build_graph
+from api.exception_handlers import (
+    document_parse_exception_handler,
+    spring_unauthorized_exception_handler,
+)
 from api.routes.document import router as document_router
+from clients.spring_client import SpringUnauthorizedError
 from parsers.exceptions import DocumentParseException
 from api.routes.embedding import router as embedding_documents_router
 from api.routes.rag import router as rag_router
+from api.routes.agent import router as agent_router
+from db.checkpointer import checkpoint_saver
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    with checkpoint_saver() as saver:
+        app.state.agent_graph = build_graph(saver)
+        yield
 
 app = FastAPI(
     title="Enterprise Agent AI Service",
-    version="1.0.0"
+    version="1.0.0",
+    lifespan=lifespan,
 )
 
 #注册全局异常处理
@@ -16,7 +33,11 @@ app.add_exception_handler(
     DocumentParseException,
     document_parse_exception_handler,
 )
+app.add_exception_handler(
+    SpringUnauthorizedError,
+    spring_unauthorized_exception_handler,
+)
 app.include_router(document_router,tags=["document"])
 app.include_router(embedding_documents_router,tags=["embedding"])
-
 app.include_router(rag_router,tags=["rag"])
+app.include_router(agent_router,tags=["agent"])
