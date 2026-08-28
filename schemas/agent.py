@@ -1,3 +1,5 @@
+from typing import Any, Literal
+
 from pydantic import BaseModel,Field
 
 from schemas.embedding import HybridRetrievalResponse
@@ -24,8 +26,30 @@ class CheckpointRef(BaseModel):
     parent_checkpoint_id: str | None = None
     created_at: str | None = None
 
+class ApprovalRequest(BaseModel):
+    interrupt_id: str
+    action: str
+    payload: dict[str, Any]
+
+class AgentApprovalDecisionRequest(BaseModel):
+    conversation_id: int = Field(
+        gt=0,
+        description="需要恢复的会话 ID",
+    )
+
+    interrupt_id: str = Field(
+        min_length=1,
+        description="LangGraph 中断 ID",
+    )
+
+    approved: bool = Field(
+        description="是否允许执行操作",
+    )
+
 class AgentChatResponse(BaseModel):
-    answer: str
+    status: Literal["completed", "approval_required"]
+    answer: str | None = None
+    approval: ApprovalRequest | None = None
     title: str
     citations: list[HybridRetrievalResponse]
     checkpoint: CheckpointRef
