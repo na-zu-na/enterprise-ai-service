@@ -25,11 +25,11 @@ def build_graph_config(conversation_id: int)->dict:
     }
 
 #增加checkpoint构造函数
-def build_checkpoint_ref(
+async def build_checkpoint_ref(
         graph: CompiledStateGraph,
         config: dict,
 ) -> CheckpointRef:
-    snapshot = graph.get_state(config)
+    snapshot = await graph.aget_state(config)
 
     snapshot_config = snapshot.config["configurable"]
 
@@ -46,12 +46,12 @@ def build_checkpoint_ref(
         created_at=snapshot.created_at,
     )
 
-def build_agent_response(
+async def build_agent_response(
         graph: CompiledStateGraph,
         config: dict,
         result: dict[str, Any],
 )->AgentChatResponse:
-    checkpoint=build_checkpoint_ref(
+    checkpoint=await build_checkpoint_ref(
         graph=graph,
         config=config,
     )
@@ -107,7 +107,7 @@ def build_agent_response(
     "/chat",
     response_model=ApiResponse[AgentChatResponse]
 )
-def agent_chat(
+async def agent_chat(
         request: Request,
         payload: AgentChatRequest,
         access_token:Annotated[
@@ -118,7 +118,7 @@ def agent_chat(
     graph: CompiledStateGraph = request.app.state.agent_graph
     config = build_graph_config(payload.conversation_id)
 
-    result=graph.invoke(
+    result=await graph.ainvoke(
         {
             "messages":[
                 HumanMessage(content=payload.message)
@@ -132,7 +132,7 @@ def agent_chat(
         },
     )
 
-    response=build_agent_response(
+    response=await build_agent_response(
         graph=graph,
         config=config,
         result=result,
@@ -144,7 +144,7 @@ def agent_chat(
     "/approvals/respond",
     response_model=ApiResponse[AgentChatResponse],
 )
-def respond_to_approval(
+async def respond_to_approval(
         request: Request,
         payload: AgentApprovalDecisionRequest,
         access_token: Annotated[
@@ -155,7 +155,7 @@ def respond_to_approval(
     graph: CompiledStateGraph = request.app.state.agent_graph
     config = build_graph_config(payload.conversation_id)
 
-    snapshot=graph.get_state(config)
+    snapshot=await graph.aget_state(config)
 
     if not snapshot.values:
         raise HTTPException(
@@ -175,7 +175,7 @@ def respond_to_approval(
             detail="审批请求不存在、已经处理或不属于当前会话",
         )
 
-    result = graph.invoke(
+    result = await graph.ainvoke(
         Command(
             resume={
                 payload.interrupt_id: {
@@ -189,7 +189,7 @@ def respond_to_approval(
         },
     )
 
-    response = build_agent_response(
+    response = await build_agent_response(
         graph=graph,
         config=config,
         result=result,

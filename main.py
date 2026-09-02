@@ -8,6 +8,7 @@ from api.exception_handlers import (
     spring_unauthorized_exception_handler,
 )
 from api.routes.document import router as document_router
+from clients.google_calendar_mcp import create_google_calendar_mcp_client
 from clients.spring_client import SpringUnauthorizedError
 from parsers.exceptions import DocumentParseException
 from api.routes.embedding import router as embedding_documents_router
@@ -18,8 +19,16 @@ from db.checkpointer import checkpoint_saver
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    with checkpoint_saver() as saver:
-        app.state.agent_graph = build_graph(saver)
+    client=create_google_calendar_mcp_client()
+    calendar_tools= await client.get_tools()
+
+    async with checkpoint_saver() as saver:
+        app.state.google_calendar_mcp = client
+
+        app.state.agent_graph = build_graph(
+            checkpointer=saver,
+            external_tools=calendar_tools,
+        )
         yield
 
 app = FastAPI(

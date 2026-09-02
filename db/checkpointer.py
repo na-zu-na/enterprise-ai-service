@@ -1,18 +1,18 @@
-from collections.abc import Iterator
-from contextlib import contextmanager
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 
-from langgraph.checkpoint.postgres import PostgresSaver
+from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 from psycopg.rows import dict_row
-from psycopg_pool import ConnectionPool
+from psycopg_pool import AsyncConnectionPool
 
 from core.config import Settings
 
 
-@contextmanager
-def checkpoint_saver() -> Iterator[PostgresSaver]:
+@asynccontextmanager
+async def checkpoint_saver() -> AsyncIterator[AsyncPostgresSaver]:
     """Create the application-wide PostgreSQL checkpoint saver."""
 
-    pool = ConnectionPool(
+    pool = AsyncConnectionPool(
         conninfo=Settings.DATABASE_URL,
         min_size=1,
         max_size=10,
@@ -23,12 +23,12 @@ def checkpoint_saver() -> Iterator[PostgresSaver]:
             "row_factory": dict_row,
         },
     )
-    pool.open(wait=True)
+    await pool.open(wait=True)
 
     try:
-        saver = PostgresSaver(pool)
+        saver = AsyncPostgresSaver(pool)
         # Idempotent: creates or migrates the LangGraph checkpoint tables.
-        saver.setup()
+        await saver.setup()
         yield saver
     finally:
-        pool.close()
+        await pool.close()
