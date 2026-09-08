@@ -1,0 +1,186 @@
+[
+  {
+    "id": "keyword-current-001",
+    "category": "keyword",
+    "query": "连续休假3至5天需要提前多久申请？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 32,
+    "expected_chunk_ids": [181]
+  },
+  {
+    "id": "keyword-current-002",
+    "category": "keyword",
+    "query": "普通客户对话默认保留多长时间？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 26,
+    "expected_chunk_ids": [133]
+  },
+  {
+    "id": "keyword-current-003",
+    "category": "keyword",
+    "query": "P0事故的确认时限是多少？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 37,
+    "expected_chunk_ids": [226]
+  },
+  {
+    "id": "keyword-current-004",
+    "category": "keyword",
+    "query": "中国大陆员工加班晚餐报销上限是多少？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 34,
+    "expected_chunk_ids": [202]
+  },
+  {
+    "id": "keyword-current-005",
+    "category": "keyword",
+    "query": "新加坡员工每年学习发展福利额度是多少？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 31,
+    "expected_chunk_ids": [173]
+  },
+  {
+    "id": "semantic-current-001",
+    "category": "semantic_rewrite",
+    "query": "晚上一直忙到八点半以后，公司能不能报销吃饭的钱？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 34,
+    "expected_chunk_ids": [202]
+  },
+  {
+    "id": "semantic-current-002",
+    "category": "semantic_rewrite",
+    "query": "猫一直蹲猫砂盆却尿不出来，这算需要立刻处理的危险信号吗？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 28,
+    "expected_chunk_ids": [148]
+  },
+  {
+    "id": "semantic-current-003",
+    "category": "semantic_rewrite",
+    "query": "一个不要钱的浏览器插件会接触客户信息，还需要走审核吗？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 34,
+    "expected_chunk_ids": [204]
+  },
+  {
+    "id": "semantic-current-004",
+    "category": "semantic_rewrite",
+    "query": "我准备去另一个国家远程办公，需要提前多长时间申请？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 33,
+    "expected_chunk_ids": [195]
+  },
+  {
+    "id": "semantic-current-005",
+    "category": "semantic_rewrite",
+    "query": "绩效没达标后安排的改进期一般会持续多少天？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 35,
+    "expected_chunk_ids": [212]
+  },
+  {
+    "id": "exact-current-001",
+    "category": "exact_reference",
+    "query": "SEC-01规定Restricted数据允许存放在哪里？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 26,
+    "expected_chunk_ids": [130]
+  },
+  {
+    "id": "exact-current-002",
+    "category": "exact_reference",
+    "query": "AI-01对高风险场景识别召回率的发布门槛是多少？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 27,
+    "expected_chunk_ids": [140]
+  },
+  {
+    "id": "exact-current-003",
+    "category": "exact_reference",
+    "query": "WORK-01要求Hybrid Eligible岗位每周去办公室几天？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 33,
+    "expected_chunk_ids": [192]
+  },
+  {
+    "id": "exact-current-004",
+    "category": "exact_reference",
+    "query": "PAY-01规定10月1日以后入职何时开始参与奖金？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 30,
+    "expected_chunk_ids": [166]
+  },
+  {
+    "id": "exact-current-005",
+    "category": "exact_reference",
+    "query": "CX-01要求P1事故在几个工作日内完成复盘？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 37,
+    "expected_chunk_ids": [229]
+  },
+  {
+    "id": "cross-current-001",
+    "category": "cross_chunk",
+    "query": "入职不足一年有多少年假，试用期什么时候可以申请连续两天？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 32,
+    "expected_chunk_ids": [180, 181]
+  },
+  {
+    "id": "cross-current-002",
+    "category": "cross_chunk",
+    "query": "原始客户对话属于什么数据级别，能否发到个人版AI里？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 26,
+    "expected_chunk_ids": [130, 132]
+  },
+  {
+    "id": "cross-current-003",
+    "category": "cross_chunk",
+    "query": "P0事故多久确认，又要在多久内完成复盘？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 37,
+    "expected_chunk_ids": [226, 229]
+  },
+  {
+    "id": "cross-current-004",
+    "category": "cross_chunk",
+    "query": "L4的目标奖金比例是多少，最终奖金又由哪些因素决定？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 30,
+    "expected_chunk_ids": [165, 166]
+  },
+  {
+    "id": "cross-current-005",
+    "category": "cross_chunk",
+    "query": "混合办公岗位通常每周到公司几天，新员工前30天有什么不同？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": 33,
+    "expected_chunk_ids": [192, 193]
+  },
+  {
+    "id": "no-answer-current-001",
+    "category": "no_answer",
+    "query": "我这个月税前工资具体是多少？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": null,
+    "expected_chunk_ids": []
+  },
+  {
+    "id": "no-answer-current-002",
+    "category": "no_answer",
+    "query": "我现在还剩多少天年假？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": null,
+    "expected_chunk_ids": []
+  },
+  {
+    "id": "no-answer-current-003",
+    "category": "no_answer",
+    "query": "我的猫应该服用多少毫克药物？",
+    "knowledge_base_ids": [4],
+    "expected_document_id": null,
+    "expected_chunk_ids": []
+  }
+]

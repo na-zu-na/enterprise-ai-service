@@ -1,0 +1,1535 @@
+{
+  "dataset_path": "evals\\datasets\\retrieval_eval_current.json",
+  "candidate_k": 30,
+  "rrf_top_k": 20,
+  "top_k": 5,
+  "strategies": [
+    {
+      "strategy": "Vector Only",
+      "top_k": 5,
+      "metrics": {
+        "evaluated_queries": 20,
+        "skipped_no_answer_queries": 3,
+        "hit_at_k": 0.95,
+        "recall_at_k": 0.95,
+        "mrr": 0.8125
+      },
+      "metrics_by_category": {
+        "cross_chunk": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 0.8,
+          "recall_at_k": 0.8,
+          "mrr": 0.7
+        },
+        "exact_reference": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.75
+        },
+        "keyword": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 1.0
+        },
+        "no_answer": {
+          "evaluated_queries": 0,
+          "skipped_no_answer_queries": 3,
+          "hit_at_k": 0.0,
+          "recall_at_k": 0.0,
+          "mrr": 0.0
+        },
+        "semantic_rewrite": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.8
+        }
+      },
+      "queries": [
+        {
+          "case_id": "keyword-current-001",
+          "category": "keyword",
+          "query": "连续休假3至5天需要提前多久申请？",
+          "expected_chunk_ids": [
+            181
+          ],
+          "retrieved_chunk_ids": [
+            181,
+            185,
+            183,
+            179,
+            180
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-current-002",
+          "category": "keyword",
+          "query": "普通客户对话默认保留多长时间？",
+          "expected_chunk_ids": [
+            133
+          ],
+          "retrieved_chunk_ids": [
+            133,
+            124,
+            158,
+            244,
+            151
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-current-003",
+          "category": "keyword",
+          "query": "P0事故的确认时限是多少？",
+          "expected_chunk_ids": [
+            226
+          ],
+          "retrieved_chunk_ids": [
+            226,
+            229,
+            123,
+            142,
+            225
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-current-004",
+          "category": "keyword",
+          "query": "中国大陆员工加班晚餐报销上限是多少？",
+          "expected_chunk_ids": [
+            202
+          ],
+          "retrieved_chunk_ids": [
+            202,
+            245,
+            172,
+            199,
+            201
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-current-005",
+          "category": "keyword",
+          "query": "新加坡员工每年学习发展福利额度是多少？",
+          "expected_chunk_ids": [
+            173
+          ],
+          "retrieved_chunk_ids": [
+            173,
+            167,
+            245,
+            97,
+            175
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-current-001",
+          "category": "semantic_rewrite",
+          "query": "晚上一直忙到八点半以后，公司能不能报销吃饭的钱？",
+          "expected_chunk_ids": [
+            202
+          ],
+          "retrieved_chunk_ids": [
+            202,
+            172,
+            175,
+            199,
+            245
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-current-002",
+          "category": "semantic_rewrite",
+          "query": "猫一直蹲猫砂盆却尿不出来，这算需要立刻处理的危险信号吗？",
+          "expected_chunk_ids": [
+            148
+          ],
+          "retrieved_chunk_ids": [
+            147,
+            148,
+            248,
+            144,
+            149
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "semantic-current-003",
+          "category": "semantic_rewrite",
+          "query": "一个不要钱的浏览器插件会接触客户信息，还需要走审核吗？",
+          "expected_chunk_ids": [
+            204
+          ],
+          "retrieved_chunk_ids": [
+            246,
+            204,
+            247,
+            218,
+            199
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "semantic-current-004",
+          "category": "semantic_rewrite",
+          "query": "我准备去另一个国家远程办公，需要提前多长时间申请？",
+          "expected_chunk_ids": [
+            195
+          ],
+          "retrieved_chunk_ids": [
+            195,
+            193,
+            194,
+            190,
+            181
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-current-005",
+          "category": "semantic_rewrite",
+          "query": "绩效没达标后安排的改进期一般会持续多少天？",
+          "expected_chunk_ids": [
+            212
+          ],
+          "retrieved_chunk_ids": [
+            212,
+            211,
+            110,
+            168,
+            244
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-current-001",
+          "category": "exact_reference",
+          "query": "SEC-01规定Restricted数据允许存放在哪里？",
+          "expected_chunk_ids": [
+            130
+          ],
+          "retrieved_chunk_ids": [
+            194,
+            134,
+            128,
+            130,
+            137
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.25
+          }
+        },
+        {
+          "case_id": "exact-current-002",
+          "category": "exact_reference",
+          "query": "AI-01对高风险场景识别召回率的发布门槛是多少？",
+          "expected_chunk_ids": [
+            140
+          ],
+          "retrieved_chunk_ids": [
+            140,
+            135,
+            138,
+            137,
+            144
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-current-003",
+          "category": "exact_reference",
+          "query": "WORK-01要求Hybrid Eligible岗位每周去办公室几天？",
+          "expected_chunk_ids": [
+            192
+          ],
+          "retrieved_chunk_ids": [
+            242,
+            192,
+            190,
+            112,
+            193
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "exact-current-004",
+          "category": "exact_reference",
+          "query": "PAY-01规定10月1日以后入职何时开始参与奖金？",
+          "expected_chunk_ids": [
+            166
+          ],
+          "retrieved_chunk_ids": [
+            166,
+            163,
+            164,
+            213,
+            168
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-current-005",
+          "category": "exact_reference",
+          "query": "CX-01要求P1事故在几个工作日内完成复盘？",
+          "expected_chunk_ids": [
+            229
+          ],
+          "retrieved_chunk_ids": [
+            229,
+            123,
+            224,
+            110,
+            226
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-current-001",
+          "category": "cross_chunk",
+          "query": "入职不足一年有多少年假，试用期什么时候可以申请连续两天？",
+          "expected_chunk_ids": [
+            180,
+            181
+          ],
+          "retrieved_chunk_ids": [
+            181,
+            180,
+            243,
+            179,
+            175
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-current-002",
+          "category": "cross_chunk",
+          "query": "原始客户对话属于什么数据级别，能否发到个人版AI里？",
+          "expected_chunk_ids": [
+            130,
+            132
+          ],
+          "retrieved_chunk_ids": [
+            247,
+            137,
+            97,
+            138,
+            129
+          ],
+          "metrics": {
+            "hit_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        },
+        {
+          "case_id": "cross-current-003",
+          "category": "cross_chunk",
+          "query": "P0事故多久确认，又要在多久内完成复盘？",
+          "expected_chunk_ids": [
+            226,
+            229
+          ],
+          "retrieved_chunk_ids": [
+            229,
+            225,
+            226,
+            142,
+            123
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-current-004",
+          "category": "cross_chunk",
+          "query": "L4的目标奖金比例是多少，最终奖金又由哪些因素决定？",
+          "expected_chunk_ids": [
+            165,
+            166
+          ],
+          "retrieved_chunk_ids": [
+            165,
+            249,
+            213,
+            164,
+            166
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-current-005",
+          "category": "cross_chunk",
+          "query": "混合办公岗位通常每周到公司几天，新员工前30天有什么不同？",
+          "expected_chunk_ids": [
+            192,
+            193
+          ],
+          "retrieved_chunk_ids": [
+            242,
+            192,
+            193,
+            190,
+            105
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "no-answer-current-001",
+          "category": "no_answer",
+          "query": "我这个月税前工资具体是多少？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            167,
+            203,
+            249,
+            164,
+            173
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-current-002",
+          "category": "no_answer",
+          "query": "我现在还剩多少天年假？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            243,
+            180,
+            181,
+            179,
+            176
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-current-003",
+          "category": "no_answer",
+          "query": "我的猫应该服用多少毫克药物？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            248,
+            148,
+            147,
+            144,
+            150
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        }
+      ]
+    },
+    {
+      "strategy": "Hybrid + RRF",
+      "top_k": 5,
+      "metrics": {
+        "evaluated_queries": 20,
+        "skipped_no_answer_queries": 3,
+        "hit_at_k": 1.0,
+        "recall_at_k": 0.975,
+        "mrr": 0.8416666666666668
+      },
+      "metrics_by_category": {
+        "cross_chunk": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 0.9,
+          "mrr": 0.9
+        },
+        "exact_reference": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.7666666666666666
+        },
+        "keyword": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 1.0
+        },
+        "no_answer": {
+          "evaluated_queries": 0,
+          "skipped_no_answer_queries": 3,
+          "hit_at_k": 0.0,
+          "recall_at_k": 0.0,
+          "mrr": 0.0
+        },
+        "semantic_rewrite": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.7
+        }
+      },
+      "queries": [
+        {
+          "case_id": "keyword-current-001",
+          "category": "keyword",
+          "query": "连续休假3至5天需要提前多久申请？",
+          "expected_chunk_ids": [
+            181
+          ],
+          "retrieved_chunk_ids": [
+            181,
+            182,
+            183,
+            242,
+            185
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-current-002",
+          "category": "keyword",
+          "query": "普通客户对话默认保留多长时间？",
+          "expected_chunk_ids": [
+            133
+          ],
+          "retrieved_chunk_ids": [
+            133,
+            247,
+            151,
+            228,
+            124
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-current-003",
+          "category": "keyword",
+          "query": "P0事故的确认时限是多少？",
+          "expected_chunk_ids": [
+            226
+          ],
+          "retrieved_chunk_ids": [
+            226,
+            123,
+            225,
+            229,
+            200
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-current-004",
+          "category": "keyword",
+          "query": "中国大陆员工加班晚餐报销上限是多少？",
+          "expected_chunk_ids": [
+            202
+          ],
+          "retrieved_chunk_ids": [
+            202,
+            245,
+            172,
+            199,
+            201
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-current-005",
+          "category": "keyword",
+          "query": "新加坡员工每年学习发展福利额度是多少？",
+          "expected_chunk_ids": [
+            173
+          ],
+          "retrieved_chunk_ids": [
+            173,
+            180,
+            175,
+            169,
+            172
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-current-001",
+          "category": "semantic_rewrite",
+          "query": "晚上一直忙到八点半以后，公司能不能报销吃饭的钱？",
+          "expected_chunk_ids": [
+            202
+          ],
+          "retrieved_chunk_ids": [
+            245,
+            202,
+            199,
+            196,
+            201
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "semantic-current-002",
+          "category": "semantic_rewrite",
+          "query": "猫一直蹲猫砂盆却尿不出来，这算需要立刻处理的危险信号吗？",
+          "expected_chunk_ids": [
+            148
+          ],
+          "retrieved_chunk_ids": [
+            147,
+            148,
+            144,
+            149,
+            152
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "semantic-current-003",
+          "category": "semantic_rewrite",
+          "query": "一个不要钱的浏览器插件会接触客户信息，还需要走审核吗？",
+          "expected_chunk_ids": [
+            204
+          ],
+          "retrieved_chunk_ids": [
+            247,
+            204,
+            141,
+            246,
+            89
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "semantic-current-004",
+          "category": "semantic_rewrite",
+          "query": "我准备去另一个国家远程办公，需要提前多长时间申请？",
+          "expected_chunk_ids": [
+            195
+          ],
+          "retrieved_chunk_ids": [
+            195,
+            194,
+            193,
+            181,
+            112
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-current-005",
+          "category": "semantic_rewrite",
+          "query": "绩效没达标后安排的改进期一般会持续多少天？",
+          "expected_chunk_ids": [
+            212
+          ],
+          "retrieved_chunk_ids": [
+            212,
+            110,
+            209,
+            111,
+            211
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-current-001",
+          "category": "exact_reference",
+          "query": "SEC-01规定Restricted数据允许存放在哪里？",
+          "expected_chunk_ids": [
+            130
+          ],
+          "retrieved_chunk_ids": [
+            194,
+            134,
+            130,
+            132,
+            247
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333
+          }
+        },
+        {
+          "case_id": "exact-current-002",
+          "category": "exact_reference",
+          "query": "AI-01对高风险场景识别召回率的发布门槛是多少？",
+          "expected_chunk_ids": [
+            140
+          ],
+          "retrieved_chunk_ids": [
+            140,
+            135,
+            144,
+            98,
+            138
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-current-003",
+          "category": "exact_reference",
+          "query": "WORK-01要求Hybrid Eligible岗位每周去办公室几天？",
+          "expected_chunk_ids": [
+            192
+          ],
+          "retrieved_chunk_ids": [
+            242,
+            192,
+            112,
+            190,
+            193
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "exact-current-004",
+          "category": "exact_reference",
+          "query": "PAY-01规定10月1日以后入职何时开始参与奖金？",
+          "expected_chunk_ids": [
+            166
+          ],
+          "retrieved_chunk_ids": [
+            166,
+            213,
+            164,
+            105,
+            163
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-current-005",
+          "category": "exact_reference",
+          "query": "CX-01要求P1事故在几个工作日内完成复盘？",
+          "expected_chunk_ids": [
+            229
+          ],
+          "retrieved_chunk_ids": [
+            229,
+            123,
+            110,
+            124,
+            222
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-current-001",
+          "category": "cross_chunk",
+          "query": "入职不足一年有多少年假，试用期什么时候可以申请连续两天？",
+          "expected_chunk_ids": [
+            180,
+            181
+          ],
+          "retrieved_chunk_ids": [
+            181,
+            180,
+            243,
+            111,
+            179
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-current-002",
+          "category": "cross_chunk",
+          "query": "原始客户对话属于什么数据级别，能否发到个人版AI里？",
+          "expected_chunk_ids": [
+            130,
+            132
+          ],
+          "retrieved_chunk_ids": [
+            247,
+            132,
+            97,
+            226,
+            228
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 0.5,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "cross-current-003",
+          "category": "cross_chunk",
+          "query": "P0事故多久确认，又要在多久内完成复盘？",
+          "expected_chunk_ids": [
+            226,
+            229
+          ],
+          "retrieved_chunk_ids": [
+            229,
+            225,
+            110,
+            123,
+            226
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-current-004",
+          "category": "cross_chunk",
+          "query": "L4的目标奖金比例是多少，最终奖金又由哪些因素决定？",
+          "expected_chunk_ids": [
+            165,
+            166
+          ],
+          "retrieved_chunk_ids": [
+            165,
+            249,
+            166,
+            213,
+            164
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-current-005",
+          "category": "cross_chunk",
+          "query": "混合办公岗位通常每周到公司几天，新员工前30天有什么不同？",
+          "expected_chunk_ids": [
+            192,
+            193
+          ],
+          "retrieved_chunk_ids": [
+            192,
+            242,
+            190,
+            187,
+            193
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "no-answer-current-001",
+          "category": "no_answer",
+          "query": "我这个月税前工资具体是多少？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            167,
+            249,
+            164,
+            243,
+            245
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-current-002",
+          "category": "no_answer",
+          "query": "我现在还剩多少天年假？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            243,
+            180,
+            181,
+            244,
+            110
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-current-003",
+          "category": "no_answer",
+          "query": "我的猫应该服用多少毫克药物？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            248,
+            148,
+            147,
+            150,
+            144
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        }
+      ]
+    },
+    {
+      "strategy": "Hybrid + RRF + Reranker",
+      "top_k": 5,
+      "metrics": {
+        "evaluated_queries": 20,
+        "skipped_no_answer_queries": 3,
+        "hit_at_k": 1.0,
+        "recall_at_k": 0.975,
+        "mrr": 0.7849999999999999
+      },
+      "metrics_by_category": {
+        "cross_chunk": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 0.9,
+          "mrr": 0.8
+        },
+        "exact_reference": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.74
+        },
+        "keyword": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.8
+        },
+        "no_answer": {
+          "evaluated_queries": 0,
+          "skipped_no_answer_queries": 3,
+          "hit_at_k": 0.0,
+          "recall_at_k": 0.0,
+          "mrr": 0.0
+        },
+        "semantic_rewrite": {
+          "evaluated_queries": 5,
+          "skipped_no_answer_queries": 0,
+          "hit_at_k": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.8
+        }
+      },
+      "queries": [
+        {
+          "case_id": "keyword-current-001",
+          "category": "keyword",
+          "query": "连续休假3至5天需要提前多久申请？",
+          "expected_chunk_ids": [
+            181
+          ],
+          "retrieved_chunk_ids": [
+            181,
+            182,
+            243,
+            244,
+            185
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-current-002",
+          "category": "keyword",
+          "query": "普通客户对话默认保留多长时间？",
+          "expected_chunk_ids": [
+            133
+          ],
+          "retrieved_chunk_ids": [
+            133,
+            124,
+            109,
+            131,
+            226
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "keyword-current-003",
+          "category": "keyword",
+          "query": "P0事故的确认时限是多少？",
+          "expected_chunk_ids": [
+            226
+          ],
+          "retrieved_chunk_ids": [
+            229,
+            226,
+            123,
+            142,
+            124
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "keyword-current-004",
+          "category": "keyword",
+          "query": "中国大陆员工加班晚餐报销上限是多少？",
+          "expected_chunk_ids": [
+            202
+          ],
+          "retrieved_chunk_ids": [
+            245,
+            202,
+            201,
+            173,
+            172
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "keyword-current-005",
+          "category": "keyword",
+          "query": "新加坡员工每年学习发展福利额度是多少？",
+          "expected_chunk_ids": [
+            173
+          ],
+          "retrieved_chunk_ids": [
+            173,
+            180,
+            245,
+            175,
+            183
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-current-001",
+          "category": "semantic_rewrite",
+          "query": "晚上一直忙到八点半以后，公司能不能报销吃饭的钱？",
+          "expected_chunk_ids": [
+            202
+          ],
+          "retrieved_chunk_ids": [
+            245,
+            202,
+            199,
+            238,
+            172
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "semantic-current-002",
+          "category": "semantic_rewrite",
+          "query": "猫一直蹲猫砂盆却尿不出来，这算需要立刻处理的危险信号吗？",
+          "expected_chunk_ids": [
+            148
+          ],
+          "retrieved_chunk_ids": [
+            148,
+            144,
+            147,
+            149,
+            248
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-current-003",
+          "category": "semantic_rewrite",
+          "query": "一个不要钱的浏览器插件会接触客户信息，还需要走审核吗？",
+          "expected_chunk_ids": [
+            204
+          ],
+          "retrieved_chunk_ids": [
+            246,
+            204,
+            129,
+            138,
+            141
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "semantic-current-004",
+          "category": "semantic_rewrite",
+          "query": "我准备去另一个国家远程办公，需要提前多长时间申请？",
+          "expected_chunk_ids": [
+            195
+          ],
+          "retrieved_chunk_ids": [
+            195,
+            193,
+            242,
+            181,
+            245
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "semantic-current-005",
+          "category": "semantic_rewrite",
+          "query": "绩效没达标后安排的改进期一般会持续多少天？",
+          "expected_chunk_ids": [
+            212
+          ],
+          "retrieved_chunk_ids": [
+            212,
+            209,
+            110,
+            211,
+            205
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-current-001",
+          "category": "exact_reference",
+          "query": "SEC-01规定Restricted数据允许存放在哪里？",
+          "expected_chunk_ids": [
+            130
+          ],
+          "retrieved_chunk_ids": [
+            194,
+            134,
+            126,
+            247,
+            130
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.2
+          }
+        },
+        {
+          "case_id": "exact-current-002",
+          "category": "exact_reference",
+          "query": "AI-01对高风险场景识别召回率的发布门槛是多少？",
+          "expected_chunk_ids": [
+            140
+          ],
+          "retrieved_chunk_ids": [
+            140,
+            142,
+            135,
+            139,
+            137
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-current-003",
+          "category": "exact_reference",
+          "query": "WORK-01要求Hybrid Eligible岗位每周去办公室几天？",
+          "expected_chunk_ids": [
+            192
+          ],
+          "retrieved_chunk_ids": [
+            242,
+            192,
+            193,
+            187,
+            190
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "exact-current-004",
+          "category": "exact_reference",
+          "query": "PAY-01规定10月1日以后入职何时开始参与奖金？",
+          "expected_chunk_ids": [
+            166
+          ],
+          "retrieved_chunk_ids": [
+            166,
+            163,
+            161,
+            164,
+            168
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "exact-current-005",
+          "category": "exact_reference",
+          "query": "CX-01要求P1事故在几个工作日内完成复盘？",
+          "expected_chunk_ids": [
+            229
+          ],
+          "retrieved_chunk_ids": [
+            229,
+            123,
+            222,
+            224,
+            90
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-current-001",
+          "category": "cross_chunk",
+          "query": "入职不足一年有多少年假，试用期什么时候可以申请连续两天？",
+          "expected_chunk_ids": [
+            180,
+            181
+          ],
+          "retrieved_chunk_ids": [
+            181,
+            243,
+            180,
+            112,
+            179
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-current-002",
+          "category": "cross_chunk",
+          "query": "原始客户对话属于什么数据级别，能否发到个人版AI里？",
+          "expected_chunk_ids": [
+            130,
+            132
+          ],
+          "retrieved_chunk_ids": [
+            247,
+            130,
+            97,
+            109,
+            134
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 0.5,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "cross-current-003",
+          "category": "cross_chunk",
+          "query": "P0事故多久确认，又要在多久内完成复盘？",
+          "expected_chunk_ids": [
+            226,
+            229
+          ],
+          "retrieved_chunk_ids": [
+            229,
+            123,
+            226,
+            225,
+            142
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-current-004",
+          "category": "cross_chunk",
+          "query": "L4的目标奖金比例是多少，最终奖金又由哪些因素决定？",
+          "expected_chunk_ids": [
+            165,
+            166
+          ],
+          "retrieved_chunk_ids": [
+            165,
+            166,
+            213,
+            164,
+            249
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        },
+        {
+          "case_id": "cross-current-005",
+          "category": "cross_chunk",
+          "query": "混合办公岗位通常每周到公司几天，新员工前30天有什么不同？",
+          "expected_chunk_ids": [
+            192,
+            193
+          ],
+          "retrieved_chunk_ids": [
+            242,
+            193,
+            192,
+            190,
+            108
+          ],
+          "metrics": {
+            "hit_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        },
+        {
+          "case_id": "no-answer-current-001",
+          "category": "no_answer",
+          "query": "我这个月税前工资具体是多少？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            167,
+            249,
+            89,
+            203,
+            166
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-current-002",
+          "category": "no_answer",
+          "query": "我现在还剩多少天年假？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            180,
+            244,
+            179,
+            181,
+            243
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        },
+        {
+          "case_id": "no-answer-current-003",
+          "category": "no_answer",
+          "query": "我的猫应该服用多少毫克药物？",
+          "expected_chunk_ids": [],
+          "retrieved_chunk_ids": [
+            152,
+            144,
+            248,
+            150,
+            148
+          ],
+          "metrics": {
+            "hit_at_k": null,
+            "recall_at_k": null,
+            "reciprocal_rank": null
+          }
+        }
+      ]
+    }
+  ]
+}
