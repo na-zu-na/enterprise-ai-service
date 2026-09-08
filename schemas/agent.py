@@ -1,4 +1,4 @@
-from typing import Any, Literal
+from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel,Field
 
@@ -11,7 +11,9 @@ class AgentChatRequest(BaseModel):
         description="用户发送的消息"
     )
 
-    knowledge_base_ids: list[int] = Field(
+    knowledge_base_ids: list[Annotated[int, Field(gt=0)]] = Field(
+        min_length=1,
+        max_length=200,
         description="本次对话允许查询的知识库 ID"
     )
 

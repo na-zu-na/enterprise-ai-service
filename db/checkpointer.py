@@ -6,6 +6,8 @@ from psycopg.rows import dict_row
 from psycopg_pool import AsyncConnectionPool
 
 from core.config import Settings
+from db.serialization import create_checkpoint_serializer
+from db.urls import psycopg_connection_url
 
 
 @asynccontextmanager
@@ -13,7 +15,7 @@ async def checkpoint_saver() -> AsyncIterator[AsyncPostgresSaver]:
     """Create the application-wide PostgreSQL checkpoint saver."""
 
     pool = AsyncConnectionPool(
-        conninfo=Settings.DATABASE_URL,
+        conninfo=psycopg_connection_url(Settings.DATABASE_URL),
         min_size=1,
         max_size=10,
         open=False,
@@ -26,7 +28,10 @@ async def checkpoint_saver() -> AsyncIterator[AsyncPostgresSaver]:
     await pool.open(wait=True)
 
     try:
-        saver = AsyncPostgresSaver(pool)
+        saver = AsyncPostgresSaver(
+            pool,
+            serde=create_checkpoint_serializer(),
+        )
         # Idempotent: creates or migrates the LangGraph checkpoint tables.
         await saver.setup()
         yield saver

@@ -1,4 +1,20 @@
 import os
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+load_dotenv(PROJECT_ROOT / ".env")
+
+
+def _env_bool(name: str, default: bool = False) -> bool:
+    return (
+        os.getenv(name, str(default))
+        .strip()
+        .lower()
+        in {"1", "true", "yes", "on"}
+    )
 
 class Settings:
     LLM_API_KEY: str = os.getenv("LLM_API_KEY", "")
@@ -20,12 +36,7 @@ class Settings:
         "ELASTICSEARCH_CA_CERTS"
     )
 
-    RERANKER_USE_FP16: bool = (
-            os.getenv("RERANKER_USE_FP16", "false")
-            .strip()
-            .lower()
-            in {"1", "true", "yes", "on"}
-    )
+    RERANKER_USE_FP16: bool = _env_bool("RERANKER_USE_FP16")
     RERANKER_MODEL: str = os.getenv(
         "RERANKER_MODEL",
         "BAAI/bge-reranker-v2-m3",
@@ -45,12 +56,22 @@ class Settings:
         "SPRING_REQUEST_URL","http://localhost:8080"
     )
 
-    SPRING_USER_NAME: str = os.getenv(
-        "SPRING_USER_NAME","agent_user"
+    SPRING_KNOWLEDGE_BASE_IDS_PATH: str = os.getenv(
+        "SPRING_KNOWLEDGE_BASE_IDS_PATH",
+        "/api/knowledge-bases/accessible-ids",
     )
 
-    SPRING_USER_PASSWORD: str = os.getenv(
-        "SPRING_USER_PASSWORD","12345"
+    SPRING_USER_NAME: str | None = os.getenv("SPRING_USER_NAME")
+
+    SPRING_USER_PASSWORD: str | None = os.getenv("SPRING_USER_PASSWORD")
+
+    DATABASE_URL: str | None = os.getenv("DATABASE_URL")
+
+    GOOGLE_CALENDAR_MCP_PYTHON: str | None = os.getenv(
+        "GOOGLE_CALENDAR_MCP_PYTHON"
+    )
+    GOOGLE_CALENDAR_MCP_SERVER: str | None = os.getenv(
+        "GOOGLE_CALENDAR_MCP_SERVER"
     )
 
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "postgresql://postgres:199550@localhost:5432/enterprise_agent")
+    TEST_ACCESS_TOKEN: str | None = os.getenv("TEST_ACCESS_TOKEN")

@@ -1,5 +1,4 @@
 from embeddings.base import BaseEmbedding
-from embeddings.bge_m3_embedding import BgeM3Embedding
 
 
 class EmbeddingFactory:
@@ -9,6 +8,8 @@ class EmbeddingFactory:
     def get_embedding(cls,model_name: str = "bge-m3")->BaseEmbedding:
         if model_name not in cls._instances:
             if model_name == "bge-m3":
+                from embeddings.bge_m3_embedding import BgeM3Embedding
+
                 cls._instances[model_name]=BgeM3Embedding()
             else:
                 raise ValueError(f"Unsupported embedding model: {model_name}")

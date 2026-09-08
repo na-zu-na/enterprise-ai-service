@@ -1,15 +1,18 @@
 import logging
 from threading import Lock
+from typing import TYPE_CHECKING
 
-from rerankers.bge_reranker import BgeReranker
 from schemas.embedding import HybridRetrievalResponse
+
+if TYPE_CHECKING:
+    from rerankers.bge_reranker import BgeReranker
 
 logger = logging.getLogger(__name__)
 
 
 class RerankingService:
     def __init__(self) -> None:
-        self._reranker: BgeReranker | None = None
+        self._reranker: "BgeReranker | None" = None
         self._load_lock = Lock()
 
     def rerank(
@@ -65,10 +68,12 @@ class RerankingService:
             )
         ]
 
-    def _get_reranker(self) -> BgeReranker:
+    def _get_reranker(self) -> "BgeReranker":
         if self._reranker is None:
             with self._load_lock:
                 if self._reranker is None:
+                    from rerankers.bge_reranker import BgeReranker
+
                     self._reranker = BgeReranker()
 
         if self._reranker is None:

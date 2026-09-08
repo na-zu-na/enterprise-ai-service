@@ -13,6 +13,7 @@ from clients.spring_client import SpringUnauthorizedError
 from parsers.exceptions import DocumentParseException
 from api.routes.embedding import router as embedding_documents_router
 from api.routes.rag import router as rag_router
+from api.routes.retrieval import router as retrieval_router
 from api.routes.agent import router as agent_router
 from db.checkpointer import checkpoint_saver
 
@@ -49,4 +50,5 @@ app.add_exception_handler(
 app.include_router(document_router,tags=["document"])
 app.include_router(embedding_documents_router,tags=["embedding"])
 app.include_router(rag_router,tags=["rag"])
+app.include_router(retrieval_router)
 app.include_router(agent_router,tags=["agent"])

@@ -1,15 +1,21 @@
-from pathlib import Path
-
 from langchain_mcp_adapters.client import MultiServerMCPClient
 
+from core.config import Settings
+
+
 def create_google_calendar_mcp_client()->MultiServerMCPClient:
+    if not Settings.GOOGLE_CALENDAR_MCP_PYTHON:
+        raise RuntimeError("缺少 GOOGLE_CALENDAR_MCP_PYTHON 环境变量")
+    if not Settings.GOOGLE_CALENDAR_MCP_SERVER:
+        raise RuntimeError("缺少 GOOGLE_CALENDAR_MCP_SERVER 环境变量")
+
     client = MultiServerMCPClient(
         {
             "google_calendar": {
                 "transport": "stdio",
-                "command":  r"C:\Users\25537\桌面\实用工具\Project\code\calendar-mcp-server\.venv\Scripts\python.exe",
+                "command": Settings.GOOGLE_CALENDAR_MCP_PYTHON,
                 "args": [
-                    r"C:\Users\25537\桌面\实用工具\Project\code\calendar-mcp-server\server.py",
+                    Settings.GOOGLE_CALENDAR_MCP_SERVER,
                 ]
             }
         },

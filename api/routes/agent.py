@@ -1,8 +1,8 @@
 from typing import Annotated, Any
 
-from fastapi import APIRouter, Depends, Request, HTTPException
+from fastapi import APIRouter, Depends, Header, Request, HTTPException
 from langchain_core.messages import HumanMessage
-from langgraph.types import Command
+from langgraph.types import Command, Overwrite
 from langgraph.graph.state import CompiledStateGraph
 
 from clients.tools.get_access_token import get_access_token
@@ -10,6 +10,7 @@ from core.ApiResponse import ApiResponse
 from schemas.agent import AgentChatRequest, AgentChatResponse, CheckpointRef, ApprovalRequest, \
     AgentApprovalDecisionRequest
 from services.citation_policy import select_answer_citations
+from services.knowledge_access_service import get_accessible_knowledge_base_ids
 
 router=APIRouter(
     prefix="/agent",
@@ -17,10 +18,24 @@ router=APIRouter(
 )
 
 #会话配置构造函数
-def build_graph_config(conversation_id: int)->dict:
+def get_authenticated_user_id(
+        user_id: Annotated[
+            int | None,
+            Header(alias="X-Authenticated-User-Id"),
+        ] = None,
+) -> int:
+    if user_id is None or user_id <= 0:
+        raise HTTPException(
+            status_code=401,
+            detail="缺少有效的已认证用户 ID",
+        )
+    return user_id
+
+
+def build_graph_config(conversation_id: int, user_id: int)->dict:
     return {
         "configurable": {
-            "thread_id": f"conversation:{conversation_id}",
+            "thread_id": f"user:{user_id}:conversation:{conversation_id}",
         }
     }
 
@@ -113,10 +128,20 @@ async def agent_chat(
         access_token:Annotated[
             str,
             Depends(get_access_token),
-        ]
+        ],
+        user_id: int = Depends(get_authenticated_user_id),
+        accessible_ids: list[int] = Depends(
+            get_accessible_knowledge_base_ids
+        ),
 )->ApiResponse[AgentChatResponse]:
     graph: CompiledStateGraph = request.app.state.agent_graph
-    config = build_graph_config(payload.conversation_id)
+    if not set(payload.knowledge_base_ids).issubset(accessible_ids):
+        raise HTTPException(
+            status_code=403,
+            detail="请求包含无权访问的知识库",
+        )
+
+    config = build_graph_config(payload.conversation_id, user_id)
 
     result=await graph.ainvoke(
         {
@@ -124,7 +149,8 @@ async def agent_chat(
                 HumanMessage(content=payload.message)
             ],
             "knowledge_base_ids":payload.knowledge_base_ids,
-            "citations":[],
+            # citations 使用 reducer 合并并行检索；每个新用户回合先清空旧引用。
+            "citations": Overwrite(value=[]),
         },
         config=config,
         context={
@@ -151,9 +177,10 @@ async def respond_to_approval(
             str,
             Depends(get_access_token),
         ],
+        user_id: int = Depends(get_authenticated_user_id),
 ) -> ApiResponse[AgentChatResponse]:
     graph: CompiledStateGraph = request.app.state.agent_graph
-    config = build_graph_config(payload.conversation_id)
+    config = build_graph_config(payload.conversation_id, user_id)
 
     snapshot=await graph.aget_state(config)
 
