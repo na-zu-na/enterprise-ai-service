@@ -1,7 +1,7 @@
 import os
 
 class Settings:
-    LLM_API_KEY: str = os.getenv("LLM_API_KEY", "3021bc3c-348f-481f-ae00-25ecec9dc467")
+    LLM_API_KEY: str = os.getenv("LLM_API_KEY", "")
     LLM_BASE_URL: str = os.getenv("LLM_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3")
     LLM_MODEL: str = os.getenv("LLM_MODEL", "deepseek-v4-flash-ga-260731")
 
