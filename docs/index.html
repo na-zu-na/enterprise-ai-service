@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PE6203 Enterprise Assistant Demo</title>
+  <style>
+    :root { --ink:#172033; --muted:#60708a; --blue:#155eef; --pale:#eef4ff; --line:#dbe3f0; --warn:#9a6700; }
+    * { box-sizing:border-box; } body { margin:0; color:var(--ink); background:#f7f9fc; font:16px/1.5 Arial, sans-serif; }
+    header { background:#fff; border-bottom:1px solid var(--line); padding:24px max(24px, calc((100% - 1120px)/2)); }
+    h1 { margin:0; font-size:26px; } header p { margin:5px 0 0; color:var(--muted); }
+    main { display:grid; grid-template-columns:285px minmax(0, 1fr); gap:20px; max-width:1120px; margin:24px auto; padding:0 24px; }
+    .card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px; box-shadow:0 2px 8px #1720330a; }
+    h2 { font-size:17px; margin:0 0 12px; } label { display:block; margin:10px 0; } input[type=checkbox] { accent-color:var(--blue); }
+    textarea, input[type=text], input[type=url] { width:100%; border:1px solid #b8c6da; border-radius:8px; padding:10px; font:inherit; }
+    textarea { min-height:112px; resize:vertical; } button { cursor:pointer; border:0; border-radius:8px; padding:10px 14px; color:#fff; background:var(--blue); font-weight:700; }
+    button.secondary { background:#eaf0fb; color:#234; } button:disabled { opacity:.55; cursor:wait; }
+    .actions { display:flex; gap:10px; margin-top:10px; flex-wrap:wrap; } .status { color:var(--muted); margin:12px 0; min-height:24px; }
+    .answer { white-space:pre-wrap; } .citation { border-left:3px solid var(--blue); background:var(--pale); margin-top:10px; padding:10px 12px; }
+    .notice { background:#fff8e5; border:1px solid #f2d795; padding:12px; border-radius:8px; color:#684b00; margin-bottom:15px; }
+    .small { color:var(--muted); font-size:13px; } .hidden { display:none; } #approval { margin-top:18px; }
+    code { background:#f0f3f8; padding:2px 5px; border-radius:4px; } @media(max-width:760px){ main{grid-template-columns:1fr; padding:0 14px;} }
+  </style>
+</head>
+<body>
+<header><h1>Enterprise Onboarding Assistant</h1><p>PE6203 public course prototype • grounded answers • scoped knowledge bases • human approval for write actions</p></header>
+<main>
+  <aside class="card">
+    <h2>Knowledge-base scope</h2>
+    <label><input type="checkbox" value="employee-policy" checked> Employee Policy Knowledge Base</label>
+    <label><input type="checkbox" value="tech-docs"> Technical Documentation</label>
+    <p class="small">The selected scope is kept for the current session, including retry after a failed request.</p>
+    <hr>
+    <h2>Live backend</h2>
+    <input id="apiUrl" type="url" placeholder="https://your-service.onrender.com">
+    <div class="actions"><button class="secondary" id="saveApi">Use live backend</button><button class="secondary" id="offline">Use built-in demo</button></div>
+    <p id="mode" class="small">Mode: built-in demo (always available)</p>
+  </aside>
+  <section class="card">
+    <div class="notice"><strong>Course demo notice.</strong> The built-in mode demonstrates the designed user flow with a small curated collection. The optional Render service provides the same flow through a live API. Neither mode exposes private enterprise data or credentials.</div>
+    <h2>Ask a question</h2>
+    <textarea id="question" placeholder="Example: Can I store Restricted data in my personal cloud drive?">Can I store Restricted data in my personal cloud drive?</textarea>
+    <div class="actions"><button id="ask">Ask the assistant</button><button class="secondary" id="cancel">Cancel request</button></div>
+    <p id="status" class="status" aria-live="polite">Ready.</p>
+    <div id="result"></div>
+    <section id="approval" class="card hidden">
+      <h2>Human approval required</h2><p id="approvalText"></p>
+      <div class="actions"><button id="approve">Approve task</button><button class="secondary" id="reject">Reject</button></div>
+    </section>
+    <hr>
+    <h2>Task creation demonstration</h2>
+    <input id="taskTitle" type="text" value="Complete AI security training"><div class="actions"><button class="secondary" id="prepare">Prepare task for approval</button></div>
+  </section>
+</main>
+<script>
+  const storeKey = 'pe6203LiveApiUrl';
+  let controller, pendingActionId = null;
+  const $ = id => document.getElementById(id);
+  $('apiUrl').value = localStorage.getItem(storeKey) || '';
+  const selected = () => [...document.querySelectorAll('input[type=checkbox]:checked')].map(x => x.value);
+  const api = () => localStorage.getItem(storeKey) || '';
+  function status(message) { $('status').textContent = message; }
+  function render(data) {
+    const citations = (data.citations || []).map(item => `<div class="citation"><strong>${item.document}</strong> — ${item.section}<br><span class="small">${item.text}</span></div>`).join('');
+    $('result').innerHTML = `<div class="answer"><strong>${data.status === 'completed' ? 'Answer' : 'Result'}:</strong> ${data.answer}</div>${citations}`;
+  }
+  function localAnswer(message, bases) {
+    const q = message.toLowerCase();
+    const tech = /sdk|release|technical|api/.test(q);
+    if (tech && !bases.includes('tech-docs')) return { status:'insufficient_information', answer:'The selected knowledge base does not contain sufficient information to answer this technical-documentation question.', citations:[] };
+    if (/restricted|personal cloud|data/.test(q) && bases.includes('employee-policy')) return { status:'completed', answer:'Restricted data must not be stored in unapproved locations. Access is limited to authorised roles. 【Data Classification Standard】', citations:[{document:'Data Classification Standard',section:'Restricted Data',text:'Restricted data may only be accessed by authorised roles and must not be stored in unapproved locations.'}] };
+    if (/leave|probation/.test(q) && bases.includes('employee-policy')) return { status:'completed', answer:'Leave eligibility depends on region, employment type, service period, and current leave balance. 【Annual Leave Policy】', citations:[{document:'Annual Leave Policy',section:'Eligibility and Carry Over',text:'Leave eligibility depends on region, employment type, service period, and current leave balance.'}] };
+    return { status:'insufficient_information', answer:'The selected knowledge base does not contain sufficient information to answer this question.', citations:[] };
+  }
+  async function request(path, payload) {
+    if (!api()) return null;
+    controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 45000);
+    try { const response = await fetch(api().replace(/\/$/, '') + path, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:controller.signal}); if (!response.ok) throw Error('Live service returned ' + response.status); return await response.json(); }
+    finally { clearTimeout(timer); controller = null; }
+  }
+  $('saveApi').onclick = () => { const value = $('apiUrl').value.trim().replace(/\/$/, ''); if (!value) return status('Enter the Render URL first.'); localStorage.setItem(storeKey, value); $('mode').textContent = 'Mode: live backend — ' + value; status('Live backend selected.'); };
+  $('offline').onclick = () => { localStorage.removeItem(storeKey); $('apiUrl').value=''; $('mode').textContent='Mode: built-in demo (always available)'; status('Built-in demo selected.'); };
+  $('cancel').onclick = () => { if (controller) { controller.abort(); status('Request cancelled. Your knowledge-base scope has been kept.'); } };
+  $('ask').onclick = async () => { const bases=selected(), message=$('question').value.trim(); if (!bases.length) return status('Select at least one knowledge base.'); if (!message) return status('Enter a question.'); $('ask').disabled=true; status('Retrieving evidence and generating an answer…'); try { const data = await request('/api/query',{message,knowledge_base_ids:bases}) || localAnswer(message,bases); render(data); status('Completed. Scope retained: ' + bases.join(', ') + '.'); } catch (e) { status(e.name === 'AbortError' ? 'Request timed out or was cancelled. You can retry; scope retained.' : 'Live backend unavailable. Switch to built-in demo or retry.'); } finally { $('ask').disabled=false; } };
+  $('prepare').onclick = async () => { const title=$('taskTitle').value.trim(); if(!title) return status('Enter a task title.'); try { const data = await request('/api/actions/prepare',{title,deadline:'Friday'}) || {status:'approval_required',action_id:'local',payload:{title,deadline:'Friday'}}; pendingActionId=data.action_id; $('approvalText').textContent=`Proposed task: ${data.payload.title}; deadline: ${data.payload.deadline}. No task is created until you approve.`; $('approval').classList.remove('hidden'); status('Approval required.'); } catch { status('Live backend unavailable. Switch to built-in demo or retry.'); } };
+  $('approve').onclick = async () => { try { const data = pendingActionId === 'local' || !api() ? {message:'The demo task was created after explicit approval.'} : await request('/api/actions/'+pendingActionId+'/approve',{}); $('approval').classList.add('hidden'); status(data.message); } catch { status('The action could not be approved. No task was created.'); } };
+  $('reject').onclick = () => { $('approval').classList.add('hidden'); pendingActionId=null; status('Action rejected. No task was created.'); };
+</script>
+</body>
+</html>

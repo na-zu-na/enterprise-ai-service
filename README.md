@@ -1,5 +1,9 @@
 # Enterprise AI Service
 
+## Public course demonstration
+
+This repository includes a public, credential-free course demonstration. The GitHub Pages interface is the persistent fallback; an optional Render service supplies a live FastAPI API for the same scoped knowledge, citation, cancellation, and approval flows. See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md).
+
 > 企业知识库 RAG 与智能 Agent 服务
 >
 > Enterprise knowledge-base RAG and intelligent agent service
