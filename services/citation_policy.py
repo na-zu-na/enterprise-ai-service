@@ -4,7 +4,11 @@ from schemas.embedding import HybridRetrievalResponse
 
 
 _INSUFFICIENT_ANSWER_PATTERN = re.compile(
-    r"^(?:抱歉[，,。.!！\s]*)?根据现有资料无法确定[。.!！\s]*$"
+    r"^(?:"
+    r"(?:抱歉[，,。.!！\s]*)?根据现有资料无法确定"
+    r"|The available Xianqi enterprise knowledge base does not provide enough "
+    r"information to determine this"
+    r")[。.!！\s]*$"
 )
 
 

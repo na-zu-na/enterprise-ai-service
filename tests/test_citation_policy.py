@@ -38,6 +38,22 @@ def test_insufficient_answer_has_no_citations() -> None:
     assert select_answer_citations(answer, [candidate]) == []
 
 
+def test_english_insufficient_answer_has_no_citations() -> None:
+    candidate = make_candidate(
+        chunk_id=1,
+        document_name="Policy",
+        rerank_score=0.9,
+    )
+
+    answer = (
+        "The available Xianqi enterprise knowledge base does not provide "
+        "enough information to determine this."
+    )
+
+    assert is_insufficient_answer(answer)
+    assert select_answer_citations(answer, [candidate]) == []
+
+
 def test_only_explicitly_cited_documents_are_returned() -> None:
     cited = make_candidate(
         chunk_id=1,

@@ -7,9 +7,13 @@ from langgraph.types import Command
 
 from db.session import SessionLocal
 from schemas.embedding import VectorRetrievalRequest
-from services.rag_service import RagService
+from services.rag_service import (
+    NO_RETRIEVAL_RESULT,
+    RagService,
+    get_rag_service,
+)
 
-rag_service=RagService()
+rag_service = get_rag_service()
 
 @tool
 def knowledge_search(
@@ -40,7 +44,9 @@ def knowledge_search(
     if chunks:
         tool_content = RagService.build_context(chunks)
     else:
-        tool_content = "没有检索到相关知识库内容。"
+        # Internal sentinel only. The answer node localizes the user-facing
+        # empty-result message according to the user's latest message.
+        tool_content = NO_RETRIEVAL_RESULT
 
     return Command(
         update={

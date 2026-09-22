@@ -1,4 +1,7 @@
 import unittest
+from concurrent.futures import ThreadPoolExecutor
+from threading import Barrier, Lock
+from time import sleep
 
 from schemas.embedding import HybridRetrievalResponse
 from services.reranking_service import RerankingService
@@ -26,6 +29,20 @@ class StubReranker:
         if self.error:
             raise self.error
         return self.scores
+
+
+class ConcurrencyDetectingReranker:
+    def __init__(self):
+        self._active_call = Lock()
+
+    def compute_scores(self, query, passages):
+        if not self._active_call.acquire(blocking=False):
+            raise RuntimeError("concurrent reranker inference")
+        try:
+            sleep(0.02)
+            return [0.9] * len(passages)
+        finally:
+            self._active_call.release()
 
 
 class RerankingServiceTest(unittest.TestCase):
@@ -68,7 +85,33 @@ class RerankingServiceTest(unittest.TestCase):
         self.assertIn("章节：年假申请", passage)
         self.assertIn("内容：内容 14", passage)
 
+    def test_serializes_concurrent_inference_on_shared_reranker(self):
+        service = RerankingService()
+        service._reranker = ConcurrencyDetectingReranker()
+        workers = 4
+        start = Barrier(workers)
+
+        def rerank_once(chunk_id):
+            start.wait()
+            return service.rerank(
+                query="query",
+                candidates=[candidate(chunk_id, 0.9)],
+                top_k=1,
+                raise_on_error=True,
+            )
+
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            futures = [
+                executor.submit(rerank_once, chunk_id)
+                for chunk_id in range(1, workers + 1)
+            ]
+            results = [future.result() for future in futures]
+
+        self.assertEqual(
+            [rows[0].id for rows in results],
+            list(range(1, workers + 1)),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
-

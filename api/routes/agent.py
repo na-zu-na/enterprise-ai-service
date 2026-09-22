@@ -5,6 +5,7 @@ from langchain_core.messages import HumanMessage
 from langgraph.types import Command, Overwrite
 from langgraph.graph.state import CompiledStateGraph
 
+from agents.config.prompt import Prompt
 from clients.tools.get_access_token import get_access_token
 from core.ApiResponse import ApiResponse
 from schemas.agent import AgentChatRequest, AgentChatResponse, CheckpointRef, ApprovalRequest, \
@@ -96,7 +97,10 @@ async def build_agent_response(
                 ),
                 payload=approval_payload
             ),
-            title=str(result.get("title") or "新对话"),
+            title=str(
+                result.get("title")
+                or Prompt.DEFAULT_CONVERSATION_TITLE
+            ),
             citations=result.get("citations", []),
             checkpoint=checkpoint,
         )
@@ -113,7 +117,10 @@ async def build_agent_response(
         status="completed",
         answer=answer,
         approval=None,
-        title=str(result.get("title") or "新对话"),
+        title=str(
+            result.get("title")
+            or Prompt.DEFAULT_CONVERSATION_TITLE
+        ),
         citations=citations,
         checkpoint=checkpoint,
     )

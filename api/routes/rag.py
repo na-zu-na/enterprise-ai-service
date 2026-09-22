@@ -4,14 +4,14 @@ from sqlalchemy.orm import Session
 from core.ApiResponse import ApiResponse
 from db.session import get_db
 from schemas.embedding import RagResponse, VectorRetrievalRequest
-from services.rag_service import RagService
+from services.rag_service import RagService, get_rag_service
 
 router = APIRouter(
     prefix="/rag",
     tags=["rag"],
 )
 
-rag_service = RagService()
+rag_service = get_rag_service()
 
 @router.post("/query",response_model=ApiResponse[RagResponse])
 def rag_query(

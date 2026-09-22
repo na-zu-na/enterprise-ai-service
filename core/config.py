@@ -36,7 +36,12 @@ class Settings:
         "ELASTICSEARCH_CA_CERTS"
     )
 
-    RERANKER_USE_FP16: bool = _env_bool("RERANKER_USE_FP16")
+    RERANKER_ENABLED: bool = _env_bool("RERANKER_ENABLED", default=True)
+    RERANKER_WARMUP_ON_STARTUP: bool = _env_bool(
+        "RERANKER_WARMUP_ON_STARTUP",
+        default=True,
+    )
+    RERANKER_USE_FP16: bool = _env_bool("RERANKER_USE_FP16", default=True)
     RERANKER_MODEL: str = os.getenv(
         "RERANKER_MODEL",
         "BAAI/bge-reranker-v2-m3",
@@ -49,7 +54,7 @@ class Settings:
         os.getenv("RERANKER_PASSAGE_MAX_LENGTH", "512")
     )
     RERANKER_MIN_SCORE: float = float(
-        os.getenv("RERANKER_MIN_SCORE", "0.5")
+        os.getenv("RERANKER_MIN_SCORE", "0.3")
     )
 
     SPRING_REQUEST_URL: str = os.getenv(

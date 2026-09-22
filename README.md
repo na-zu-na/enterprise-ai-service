@@ -66,7 +66,7 @@ Dense Retrieval captures semantic similarity, while BM25 preserves keyword and e
 | RRF Top K | 20 |
 | RRF constant | 60 |
 | Reranker Top K | 5 |
-| Reranker threshold | 0.5 |
+| Reranker threshold | 0.3 |
 
 ### 3. HITL 写操作审批 | Human-in-the-loop approval
 

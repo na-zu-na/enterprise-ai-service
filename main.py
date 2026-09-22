@@ -1,8 +1,11 @@
+import asyncio
+import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
 from agents.graph import build_graph
+from core.config import Settings
 from api.exception_handlers import (
     document_parse_exception_handler,
     spring_unauthorized_exception_handler,
@@ -16,10 +19,36 @@ from api.routes.rag import router as rag_router
 from api.routes.retrieval import router as retrieval_router
 from api.routes.agent import router as agent_router
 from db.checkpointer import checkpoint_saver
+from services.rag_service import get_rag_service
+
+
+logger = logging.getLogger("uvicorn.error")
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    if (
+        Settings.RERANKER_ENABLED
+        and Settings.RERANKER_WARMUP_ON_STARTUP
+    ):
+        logger.info(
+            "Reranker warm-up starting: model=%s, fp16=%s",
+            Settings.RERANKER_MODEL,
+            Settings.RERANKER_USE_FP16,
+        )
+        try:
+            await asyncio.to_thread(get_rag_service().warm_up)
+        except Exception:
+            logger.exception(
+                "Reranker warm-up failed; requests will fall back to RRF"
+            )
+    else:
+        logger.info(
+            "Reranker warm-up skipped: enabled=%s, warmup_on_startup=%s",
+            Settings.RERANKER_ENABLED,
+            Settings.RERANKER_WARMUP_ON_STARTUP,
+        )
+
     client=create_google_calendar_mcp_client()
     calendar_tools= await client.get_tools()
 
