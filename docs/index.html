@@ -54,11 +54,13 @@
 </main>
 <script>
   const storeKey = 'pe6203LiveApiUrl';
+  const builtInKey = 'pe6203UseBuiltInDemo';
+  const defaultApiUrl = 'https://pe6203-enterprise-assistant-demo.onrender.com';
   let controller, pendingActionId = null;
   const $ = id => document.getElementById(id);
-  $('apiUrl').value = localStorage.getItem(storeKey) || '';
+  $('apiUrl').value = localStorage.getItem(storeKey) || defaultApiUrl;
   const selected = () => [...document.querySelectorAll('input[type=checkbox]:checked')].map(x => x.value);
-  const api = () => localStorage.getItem(storeKey) || '';
+  const api = () => localStorage.getItem(builtInKey) === 'true' ? '' : (localStorage.getItem(storeKey) || defaultApiUrl);
   function status(message) { $('status').textContent = message; }
   function render(data) {
     const citations = (data.citations || []).map(item => `<div class="citation"><strong>${item.document}</strong> — ${item.section}<br><span class="small">${item.text}</span></div>`).join('');
@@ -79,8 +81,8 @@
     try { const response = await fetch(api().replace(/\/$/, '') + path, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:controller.signal}); if (!response.ok) throw Error('Live service returned ' + response.status); return await response.json(); }
     finally { clearTimeout(timer); controller = null; }
   }
-  $('saveApi').onclick = () => { const value = $('apiUrl').value.trim().replace(/\/$/, ''); if (!value) return status('Enter the Render URL first.'); localStorage.setItem(storeKey, value); $('mode').textContent = 'Mode: live backend — ' + value; status('Live backend selected.'); };
-  $('offline').onclick = () => { localStorage.removeItem(storeKey); $('apiUrl').value=''; $('mode').textContent='Mode: built-in demo (always available)'; status('Built-in demo selected.'); };
+  $('saveApi').onclick = () => { const value = $('apiUrl').value.trim().replace(/\/$/, ''); if (!value) return status('Enter the Render URL first.'); localStorage.setItem(storeKey, value); localStorage.removeItem(builtInKey); $('mode').textContent = 'Mode: live backend — ' + value; status('Live backend selected.'); };
+  $('offline').onclick = () => { localStorage.setItem(builtInKey, 'true'); $('mode').textContent='Mode: built-in demo (always available)'; status('Built-in demo selected.'); };
   $('cancel').onclick = () => { if (controller) { controller.abort(); status('Request cancelled. Your knowledge-base scope has been kept.'); } };
   $('ask').onclick = async () => { const bases=selected(), message=$('question').value.trim(); if (!bases.length) return status('Select at least one knowledge base.'); if (!message) return status('Enter a question.'); $('ask').disabled=true; status('Retrieving evidence and generating an answer…'); try { const data = await request('/api/query',{message,knowledge_base_ids:bases}) || localAnswer(message,bases); render(data); status('Completed. Scope retained: ' + bases.join(', ') + '.'); } catch (e) { status(e.name === 'AbortError' ? 'Request timed out or was cancelled. You can retry; scope retained.' : 'Live backend unavailable. Switch to built-in demo or retry.'); } finally { $('ask').disabled=false; } };
   $('prepare').onclick = async () => { const title=$('taskTitle').value.trim(); if(!title) return status('Enter a task title.'); try { const data = await request('/api/actions/prepare',{title,deadline:'Friday'}) || {status:'approval_required',action_id:'local',payload:{title,deadline:'Friday'}}; pendingActionId=data.action_id; $('approvalText').textContent=`Proposed task: ${data.payload.title}; deadline: ${data.payload.deadline}. No task is created until you approve.`; $('approval').classList.remove('hidden'); status('Approval required.'); } catch { status('Live backend unavailable. Switch to built-in demo or retry.'); } };
