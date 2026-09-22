@@ -18,7 +18,7 @@ This repository has two public course-demo entry points.
 1. Sign in to Render and select **New → Blueprint**.
 2. Connect this GitHub repository and select `render.yaml`.
 3. Create the `pe6203-enterprise-assistant-demo` service on the Free plan.
-4. Wait for deployment to complete, then copy the generated `https://...onrender.com` URL.
-5. Open the GitHub Pages site, paste that URL into **Live backend**, and select **Use live backend**.
+4. Wait for deployment to complete, then open `/health` on the generated `https://...onrender.com` URL to confirm the service is available.
+5. The GitHub Pages interface is configured to use the deployed Render URL by default. Users can still enter a replacement URL or select **Use built-in demo** when needed.
 
 The Render free service can sleep after inactivity. The static GitHub Pages demo remains available if the live API needs time to start or is unavailable. Do not add secrets to this demo service.

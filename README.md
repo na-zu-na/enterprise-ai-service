@@ -2,7 +2,14 @@
 
 ## Public course demonstration
 
-This repository includes a public, credential-free course demonstration. The GitHub Pages interface is the persistent fallback; an optional Render service supplies a live FastAPI API for the same scoped knowledge, citation, cancellation, and approval flows. See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md).
+This repository includes a public, credential-free course demonstration. The GitHub Pages interface uses the Render demo API by default and retains a built-in fallback for the same scoped knowledge, citation, cancellation, and approval flows. See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md).
+
+### Live Course Demo
+
+- **GitHub Pages interface:** https://na-zu-na.github.io/enterprise-ai-service/
+- **Render API health check:** https://pe6203-enterprise-assistant-demo.onrender.com/health
+
+The Render service is API-only, so its root URL may return `404 Not Found`; use `/health` to check availability. The free Render service may need a short wake-up period after inactivity. If it is temporarily unavailable, select **Use built-in demo** in the GitHub Pages interface.
 
 > 企业知识库 RAG 与智能 Agent 服务
 >
